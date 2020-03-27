@@ -25,7 +25,6 @@ public class FieldSetServiceImpl implements FieldSetService {
         return  formRepository.findById(form_id).map(
                 form -> {
                     fieldSet.setForm(form);
-                    //FieldSet fieldSet1=new FieldSet(fieldSet);
                     return fieldSetRepository.save(fieldSet);
                 }
         ).orElseThrow(()->new ResourceNotFoundException("Form with id"+form_id+"don't exist"));

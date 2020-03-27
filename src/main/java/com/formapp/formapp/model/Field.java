@@ -27,6 +27,9 @@ public class Field {
         this.description=description;
     }
 
+    public Field() {
+    }
+
     public void setFieldSet(FieldSet fieldSet) {
         this.fieldSet = fieldSet;
     }
