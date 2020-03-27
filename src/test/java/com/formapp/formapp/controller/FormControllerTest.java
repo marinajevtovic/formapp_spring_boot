@@ -81,7 +81,7 @@ class FormControllerTest {
     void findForm() throws Exception {
         Form form1 = new Form((long) 1, "Form ");
 
-        given(formService.getForm((long) 1)).willReturn(form1);//<=>when.then :D
+        given(formService.getForm((long) 1)).willReturn(form1);
 
         mockMvc.perform(get("/api/v1/formdatabase/form/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
