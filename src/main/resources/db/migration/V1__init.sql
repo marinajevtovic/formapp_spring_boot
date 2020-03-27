@@ -11,7 +11,7 @@ CREATE TABLE "fieldset"(
 );
 ALTER TABLE "fieldset" ADD CONSTRAINT "fk_fieldset_form_id"
     FOREIGN KEY ("form_id") REFERENCES "form" ("id") ON DELETE NO ACTION  ON UPDATE NO ACTION ;
--- CREATE INDEX   "ifk__fieldset_form_id" ON "fieldset" ("form_id");
+
 
 CREATE TABLE "field"(
                         "id" INT NOT NULL ,

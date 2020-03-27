@@ -20,13 +20,14 @@ public class FieldServiceImpl implements FieldService {
     FieldSetRepository fieldSetRepository;
     @Override
     public Field createField(Long fieldset_id, Field field) {
-        Assert.notNull(fieldset_id,"CAN'T BE NULL");
+        Assert.notNull(fieldset_id,"fieldSetId can't be null");
+        Assert.notNull(field,"field can't be null");
         return fieldSetRepository.findById(fieldset_id).map(
                 fieldSet -> {
                     field.setFieldSet(fieldSet);
                     return fieldRepository.save(field);
                 }
-        ).orElseThrow(()->new ResourceNotFoundException("Field set with id"+fieldset_id+"don't exist"));
+        ).orElseThrow(()->new ResourceNotFoundException("fieldSet with id"+fieldset_id+" not found"));
     }
 
     @Override
@@ -36,16 +37,15 @@ public class FieldServiceImpl implements FieldService {
 
     @Override
     public Field getField(Long id) {
-        Assert.notNull(id,"Id can't be null");
-        return fieldRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Field with id"+id+"not found"));
+        Assert.notNull(id,"id can't be null");
+        return fieldRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Field with id"+id+" not found"));
     }
 
     @Override
     public boolean deleteField(Long id) {
         Assert.notNull(id,"Id can't be null");
-        Field field=fieldRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Field with id"+id+"not found"));
+        Field field=fieldRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Field with id"+id+" not found"));
         fieldRepository.delete(field);
         return !fieldRepository.existsById(id);
-
     }
 }

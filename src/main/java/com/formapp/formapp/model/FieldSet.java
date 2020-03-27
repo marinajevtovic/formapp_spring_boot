@@ -29,7 +29,6 @@ public class FieldSet {
     }
 
     @Id
-
     @Column(name = "id")
     @JsonProperty("fieldsetId")
     @GeneratedValue(strategy = GenerationType.AUTO)

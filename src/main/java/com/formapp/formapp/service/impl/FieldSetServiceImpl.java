@@ -19,15 +19,15 @@ public class FieldSetServiceImpl implements FieldSetService {
     FormRepository formRepository;
     @Override
     public FieldSet createFieldSet(Long form_id, FieldSet fieldSet) {
-        Assert.notNull(fieldSet,"CAN'T BE NULL");
-        Assert.notNull(form_id,"CAN'T BE NULL");
+        Assert.notNull(fieldSet,"fieldSet can't be null");
+        Assert.notNull(form_id,"formId can't be null");
 
         return  formRepository.findById(form_id).map(
                 form -> {
                     fieldSet.setForm(form);
                     return fieldSetRepository.save(fieldSet);
                 }
-        ).orElseThrow(()->new ResourceNotFoundException("Form with id"+form_id+"don't exist"));
+        ).orElseThrow(()->new ResourceNotFoundException("Form with id"+form_id+"not found"));
     }
 
     @Override
@@ -38,17 +38,17 @@ public class FieldSetServiceImpl implements FieldSetService {
 
     @Override
     public boolean deleteFieldSet(Long id) {
-        Assert.notNull(id,"CAN'T BE NULL");
+        Assert.notNull(id,"id can't be null");
         FieldSet fieldSet=fieldSetRepository.findById(id).orElseThrow(
-                ()->new ResourceNotFoundException("Field set with id"+id+"don't exist"));
+                ()->new ResourceNotFoundException("fieldSet with id"+id+" not found"));
         fieldSetRepository.delete(fieldSet);
         return !fieldSetRepository.existsById(id);
     }
 
     @Override
     public FieldSet getFieldSet(Long id) {
-        Assert.notNull(id,"Id can't be null");
+        Assert.notNull(id,"id can't be null");
         return fieldSetRepository.findById(id).orElseThrow(
-                ()->new ResourceNotFoundException("Field set with id "+id+"Not found"));
+                ()->new ResourceNotFoundException("fieldSet with id "+id+" not found"));
     }
 }

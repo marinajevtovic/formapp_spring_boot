@@ -9,7 +9,6 @@ import java.util.List;
 @Table(name = TableName.FORM_TABLE_NAME)
 public class Form {
 
-
     public void setFormId(Long formId) {
         this.formId = formId;
     }
@@ -29,9 +28,7 @@ public class Form {
     @JsonProperty("fieldsets")
 
     private List<FieldSet> fieldSets;
-public Form(){
-
-}
+public Form(){ }
     public Form(Long id, String name) {
         this.formId=id;
         this.name=name;
@@ -45,12 +42,4 @@ public Form(){
         return name;
     }
 
-    @Override
-    public String toString() {
-        return "Form{" +
-                "formId=" + formId +
-                ", name='" + name + '\'' +
-                ", fieldSets=" + fieldSets +
-                '}';
-    }
 }

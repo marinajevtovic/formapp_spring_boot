@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -37,6 +36,6 @@ public class FieldController {
     @DeleteMapping(path = APIPath.FIELD_PATH+"/{fieldId}")
     public ResponseEntity<Object> deleteField(@PathVariable("fieldId") Long id){
        boolean isDeleted= fieldService.deleteField(id);
-        return ResponseEntity.ok(isDeleted?1:0);
+        return ResponseEntity.ok(isDeleted ? 1:0);
     }
 }

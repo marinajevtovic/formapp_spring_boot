@@ -27,8 +27,7 @@ public class Field {
         this.description=description;
     }
 
-    public Field() {
-    }
+    public Field() { }
 
     public void setFieldSet(FieldSet fieldSet) {
         this.fieldSet = fieldSet;
@@ -39,8 +38,6 @@ public class Field {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private FieldSet fieldSet;
-
-
 
     public Long getId() {
         return id;

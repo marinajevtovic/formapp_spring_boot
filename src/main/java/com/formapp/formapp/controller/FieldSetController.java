@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -27,7 +26,6 @@ public class FieldSetController {
     public ResponseEntity<Object> createFieldSet(@PathVariable("form_id") Long form_id,@Valid @RequestBody FieldSet fieldSet) {
         FieldSet createdFieldSet = fieldSetService.createFieldSet(form_id,fieldSet);
         return ResponseEntity.ok(createdFieldSet);
-//
     }
     @GetMapping(path = APIPath.FIELDSET_PATH+"/{fieldsetId}")
     public ResponseEntity<Object> findFieldSet(@PathVariable("fieldsetId") Long id){
@@ -36,8 +34,7 @@ public class FieldSetController {
     }
     @DeleteMapping(path =APIPath.FIELDSET_PATH+"/{fieldsetId}" )
     public ResponseEntity<Object> deleteFieldSet(@PathVariable("fieldsetId") Long fieldsetId){
-
-       boolean isDeleted=fieldSetService.deleteFieldSet(fieldsetId);
-       return ResponseEntity.ok(isDeleted ? 1:0);
+        boolean isDeleted=fieldSetService.deleteFieldSet(fieldsetId);
+        return ResponseEntity.ok(isDeleted ? 1:0);
     }
 }

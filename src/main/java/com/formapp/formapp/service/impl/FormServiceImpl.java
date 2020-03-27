@@ -7,7 +7,6 @@ import com.formapp.formapp.service.FormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-
 import java.util.List;
 
 @Service
@@ -16,15 +15,14 @@ public class FormServiceImpl implements FormService {
     private FormRepository formRepository;
     @Override
     public Form createForm(Form form) {
-        Assert.notNull(form,"CAN'T BE NULL");
-        System.out.println(form+"U servisu");
+        Assert.notNull(form,"form can't be null");
         return formRepository.save(form);
     }
 
     @Override
     public boolean deleteForm(Long id) {
-        Assert.notNull(id,"CAN'T BE NULL");
-        Form form=formRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Form with id"+id+"don't exist"));
+        Assert.notNull(id,"id can't be null");
+        Form form=formRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Form with id"+id+"not found"));
         formRepository.delete(form);
         return !formRepository.existsById(id);
     }
@@ -33,13 +31,11 @@ public class FormServiceImpl implements FormService {
     public List<Form> getForms() {
 
         List<Form> forms = formRepository.findAll();
-        System.out.println(forms+" in service");
         return forms;    }
 
     @Override
     public Form getForm(Long id) {
-        Assert.notNull(id,"CAN'T BE NULL");
+        Assert.notNull(id,"id can't be null");
         return  formRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Form with id "+id+"not found"));
-
     }
 }
