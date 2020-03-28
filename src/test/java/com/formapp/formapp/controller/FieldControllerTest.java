@@ -1,5 +1,6 @@
 package com.formapp.formapp.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.formapp.formapp.model.Field;
 import com.formapp.formapp.model.FieldSet;
 import com.formapp.formapp.service.FieldService;
@@ -47,6 +48,13 @@ class FieldControllerTest {
 
     @Test
     void createField() throws Exception{
+        Field field= new Field((long) 1, "input", "Name");
+        given(fieldService.createField((long)1,field)).willReturn(field);
+        mockMvc.perform(post("/api/v1/formdatabase/form/1/fieldset/1/field")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(field))).andExpect(status().isOk()).andDo(print());
+        //.andExpect(jsonPath("$.type",is(field.getType())));
+
     }
 
     @Test
@@ -68,5 +76,12 @@ class FieldControllerTest {
         mockMvc.perform(delete("/api/v1/formdatabase/field/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$",is(1))).andDo(print());
+    }
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

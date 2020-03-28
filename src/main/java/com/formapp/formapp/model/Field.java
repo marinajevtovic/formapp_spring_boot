@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class Field {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonProperty("fieldId")
     private Long id;
     @Column(name = "type")

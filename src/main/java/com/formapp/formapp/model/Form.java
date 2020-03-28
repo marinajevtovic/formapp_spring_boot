@@ -16,9 +16,9 @@ public class Form {
     public void setName(String name) {
         this.name = name;
     }
-
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonProperty("formId")
     private Long formId;
     @Column(name = "name")
