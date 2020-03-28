@@ -2,7 +2,6 @@ package com.formapp.formapp.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formapp.formapp.constrains.TableName;
-
 import javax.persistence.*;
 import java.util.List;
 @Entity
